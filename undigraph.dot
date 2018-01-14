@@ -1,0 +1,17 @@
+graph G {
+	bgcolor="#343434";
+	layout=circo;
+	A--F[ color=white ];
+	A--B[ color=white ];
+	B--C[ color=white ];
+	C--D[ color=white ];
+	D--E[ color=white ];
+	E--B[ color=white ];
+	A [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+	B [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+	C [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+	D [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+	E [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+	F [ color=7, colorscheme=rdylgn11, fillcolor=11, fontcolor=6, fontname="Migu 1M", shape=doublecircle, style="solid,filled" ];
+
+}
