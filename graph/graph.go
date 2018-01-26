@@ -39,6 +39,15 @@ func (g *graph) GetVertices() []Vertex {
 	return vertices
 }
 
+// ExistsVertex chech whether the vertex v exists in the graph g, or not
+func (g *graph) ExistsVertex(v Vertex) bool {
+	if _, ok := g.vertices[v]; !ok {
+		return false
+	}
+
+	return true
+}
+
 // AddVertex adds a vertex v to the graph g.
 // If a graph has already have the vertex v, it returns an error
 func (g *graph) AddVertex(v Vertex) error {
@@ -61,7 +70,7 @@ func (g *graph) RemoveVertex(v Vertex) error {
 	return nil
 }
 
-func (g *graph) AddEdge() error {
+func (g *graph) AddEdge(from, to Vertex) error {
 
 	return nil
 }

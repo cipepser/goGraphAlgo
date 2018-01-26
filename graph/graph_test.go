@@ -16,12 +16,25 @@ func TestIsDirected(t *testing.T) {
 	}
 }
 
+func TestExistsVertex(t *testing.T) {
+	g := NewGraph()
+
+	if g.ExistsVertex(0) {
+		t.Error("vertex exists, expects existing")
+	}
+
+	g.AddVertex(0)
+	if !g.ExistsVertex(0) {
+		t.Error("vertex does not exists, expects not existing")
+	}
+}
+
 func TestAddVertex(t *testing.T) {
 	g := NewGraph()
 
 	// first time to add a vertex 0
 	if err := g.AddVertex(0); err != nil {
-		t.Error()
+		t.Error(err)
 	}
 	if g.verticesCount != 1 {
 		t.Errorf("the count of edges expects 1, but have %v", g.verticesCount)
@@ -29,7 +42,7 @@ func TestAddVertex(t *testing.T) {
 
 	// sencond time to add a vertex 0, expects returnning error
 	if err := g.AddVertex(0); err == nil {
-		t.Error()
+		t.Error(err)
 	}
 }
 
@@ -50,7 +63,7 @@ func TestRemoveVertex(t *testing.T) {
 	g.AddVertex(0)
 
 	if err := g.RemoveVertex(0); err != nil {
-		t.Error()
+		t.Error(err)
 	}
 	if g.verticesCount != 0 {
 		t.Errorf("the count of edges expects 0, but have %v", g.verticesCount)
@@ -58,6 +71,6 @@ func TestRemoveVertex(t *testing.T) {
 
 	// expects error "doesn't exist"
 	if err := g.RemoveVertex(0); err == nil {
-		t.Error()
+		t.Error(err)
 	}
 }
