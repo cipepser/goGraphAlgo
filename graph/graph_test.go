@@ -1,6 +1,9 @@
 package graph
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestIsDirected(t *testing.T) {
 	expected := false
@@ -20,9 +23,24 @@ func TestAddVertex(t *testing.T) {
 	if err := g.AddVertex(0); err != nil {
 		t.Error()
 	}
+	if g.verticesCount != 1 {
+		t.Errorf("the count of edges expects 1, but have %v", g.verticesCount)
+	}
 
 	// sencond time to add a vertex 0, expects returnning error
 	if err := g.AddVertex(0); err == nil {
 		t.Error()
+	}
+}
+
+func TestGetVertices(t *testing.T) {
+	g := NewGraph()
+	g.AddVertex(0)
+
+	expect := []Vertex{0}
+	actual := g.GetVertices()
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("GetVertices want: %v\nget: %v", expect, actual)
 	}
 }

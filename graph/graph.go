@@ -26,6 +26,19 @@ func NewGraph() *graph {
 	return g
 }
 
+// GetVertices returns slice of Vertices
+func (g *graph) GetVertices() []Vertex {
+	vertices := make([]Vertex, g.verticesCount)
+
+	i := 0
+	for v := range g.vertices {
+		vertices[i] = v
+		i++
+	}
+
+	return vertices
+}
+
 // AddVertex adds a vertex v to the graph g.
 // If a graph has already have the vertex v, it returns an error
 func (g *graph) AddVertex(v Vertex) error {
@@ -33,6 +46,7 @@ func (g *graph) AddVertex(v Vertex) error {
 		return errors.New("g has already have the vertex v")
 	}
 	g.vertices[v]++
+	g.verticesCount++
 	return nil
 }
 
