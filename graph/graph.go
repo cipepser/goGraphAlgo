@@ -1,7 +1,9 @@
 package graph
 
+// Vertex represents a vertex of the graph
 type Vertex uint
 
+// Edge represents a edge connects a vertex and another of the graph
 type Edge struct {
 	From Vertex
 	To   Vertex
