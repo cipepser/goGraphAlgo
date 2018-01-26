@@ -20,12 +20,12 @@ func NewGraph() *graph {
 	return new(graph)
 }
 
-func (g *graph) AddNode() error {
+func (g *graph) AddVertex() error {
 
 	return nil
 }
 
-func (g *graph) RemoveNode() error {
+func (g *graph) RemoveVertex() error {
 
 	return nil
 }
