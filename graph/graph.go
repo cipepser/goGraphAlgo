@@ -11,6 +11,7 @@ type graph struct {
 	isDirected bool
 }
 
+// NewGraph constructs a new graph
 func NewGraph() *graph {
 	return new(graph)
 }
