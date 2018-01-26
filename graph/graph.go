@@ -12,9 +12,11 @@ type Edge struct {
 }
 
 type graph struct {
-	vertices   map[Vertex]int
-	edges      []Edge
-	isDirected bool
+	vertices      map[Vertex]int
+	verticesCount int
+	edges         []Edge
+	edgesCount    int
+	isDirected    bool
 }
 
 // NewGraph constructs a new graph
@@ -34,6 +36,7 @@ func (g *graph) AddVertex(v Vertex) error {
 	return nil
 }
 
+// RemoveVertex remove a vertex form the graph g.
 func (g *graph) RemoveVertex() error {
 
 	return nil
