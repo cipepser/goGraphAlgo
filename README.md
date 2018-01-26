@@ -1,1 +1,5 @@
 # goGraphAlgo
+
+
+## License
+MIT
