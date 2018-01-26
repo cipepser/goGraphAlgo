@@ -44,3 +44,20 @@ func TestGetVertices(t *testing.T) {
 		t.Errorf("GetVertices want: %v\nget: %v", expect, actual)
 	}
 }
+
+func TestRemoveVertex(t *testing.T) {
+	g := NewGraph()
+	g.AddVertex(0)
+
+	if err := g.RemoveVertex(0); err != nil {
+		t.Error()
+	}
+	if g.verticesCount != 0 {
+		t.Errorf("the count of edges expects 0, but have %v", g.verticesCount)
+	}
+
+	// expects error "doesn't exist"
+	if err := g.RemoveVertex(0); err == nil {
+		t.Error()
+	}
+}

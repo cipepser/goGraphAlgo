@@ -51,8 +51,13 @@ func (g *graph) AddVertex(v Vertex) error {
 }
 
 // RemoveVertex remove a vertex form the graph g.
-func (g *graph) RemoveVertex() error {
+func (g *graph) RemoveVertex(v Vertex) error {
+	if _, ok := g.vertices[v]; !ok {
+		return errors.New("input v doesn't exist in g")
+	}
 
+	delete(g.vertices, v)
+	g.verticesCount--
 	return nil
 }
 
