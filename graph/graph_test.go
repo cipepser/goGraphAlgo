@@ -48,6 +48,11 @@ func TestAddVertex(t *testing.T) {
 
 func TestGetVertices(t *testing.T) {
 	g := NewGraph()
+
+	if !reflect.DeepEqual(g.GetVertices(), []Vertex{}) {
+		t.Error("expect empty slice")
+	}
+
 	g.AddVertex(0)
 
 	expect := []Vertex{0}
@@ -109,7 +114,6 @@ func TestAddEdge(t *testing.T) {
 	}
 }
 
-// TODO: テスト書く
 func TestExistsEdge(t *testing.T) {
 	g := NewGraph()
 	if g.ExistsEdge(0, 1) {
@@ -131,5 +135,10 @@ func TestGetEdge(t *testing.T) {
 
 	// expect := []Edge{}
 	// actual := g.GetEdges()
+
+}
+
+// TODO: テスト書く
+func TestRemoveEdge(t *testing.T) {
 
 }
