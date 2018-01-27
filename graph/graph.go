@@ -84,9 +84,14 @@ func (g *graph) GetEdges() []Edge {
 	return edges
 }
 
-// TODO: 実装する
 func (g *graph) ExistsEdge(from, to Vertex) bool {
-
+	e := Edge{
+		From: from,
+		To:   to,
+	}
+	if _, ok := g.edges[e]; ok {
+		return true
+	}
 	return false
 }
 
@@ -99,14 +104,13 @@ func (g *graph) AddEdge(from, to Vertex, weight int) error {
 		return errors.New("edge doesn't exist")
 	}
 
-	e := Edge{
-		From: from,
-		To:   to,
-	}
-	if _, ok := g.edges[e]; ok {
+	if g.ExistsEdge(from, to) {
 		return errors.New("edge already exists")
 	}
-	g.edges[e] = weight
+	g.edges[Edge{
+		From: from,
+		To:   to,
+	}] = weight
 
 	g.edgesCount++
 

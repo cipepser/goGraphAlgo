@@ -110,6 +110,22 @@ func TestAddEdge(t *testing.T) {
 }
 
 // TODO: テスト書く
+func TestExistsEdge(t *testing.T) {
+	g := NewGraph()
+	if g.ExistsEdge(0, 1) {
+		t.Error("expect to get false, the edge doesn't exist")
+	}
+
+	g.AddVertex(0)
+	g.AddVertex(1)
+	g.AddEdge(0, 1, 0)
+	if !g.ExistsEdge(0, 1) {
+		t.Error("expect to get true, the edge exists")
+	}
+
+}
+
+// TODO: テスト書く
 func TestGetEdge(t *testing.T) {
 	// g := NewGraph()
 
