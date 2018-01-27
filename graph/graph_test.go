@@ -66,7 +66,7 @@ func TestRemoveVertex(t *testing.T) {
 		t.Error(err)
 	}
 	if g.verticesCount != 0 {
-		t.Errorf("the count of edges expects 0, but have %v", g.verticesCount)
+		t.Errorf("the count of vertices expects 0, but have %v", g.verticesCount)
 	}
 
 	// expects error "doesn't exist"
@@ -82,6 +82,10 @@ func TestAddEdge(t *testing.T) {
 		t.Error("expect to get error: edge doesn't exist")
 	}
 
+	if g.edgesCount != 0 {
+		t.Errorf("the count of edges expects 0, but have %v", g.edgesCount)
+	}
+
 	g.AddVertex(0)
 	if err := g.AddEdge(0, 1, 0); err == nil {
 		t.Error("expect to get error: edge doesn't exist")
@@ -91,9 +95,15 @@ func TestAddEdge(t *testing.T) {
 		t.Error("expect to get error: can not add edge to same vertex")
 	}
 
-	// TODO: edgeを追加してerrorが返らないことのテスト
-	// TODO: countのテスト
-	// TODO: 同じエッジを追加した場合にエラーになるテスト
+	g.AddVertex(0)
+	g.AddVertex(1)
+	if err := g.AddEdge(0, 1, 0); err != nil {
+		t.Error(err)
+	}
+	if g.edgesCount != 1 {
+		t.Errorf("the count of edges expects 1, but have %v", g.edgesCount)
+	}
+
 }
 
 // TODO: テスト書く
