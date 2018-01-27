@@ -129,16 +129,46 @@ func TestExistsEdge(t *testing.T) {
 
 }
 
-// TODO: テスト書く
 func TestGetEdge(t *testing.T) {
-	// g := NewGraph()
+	g := NewGraph()
 
-	// expect := []Edge{}
-	// actual := g.GetEdges()
+	if !reflect.DeepEqual(g.GetEdges(), []Edge{}) {
+		t.Error("expect empty slice")
+	}
 
+	g.AddVertex(0)
+	g.AddVertex(1)
+	g.AddEdge(0, 1, 0)
+
+	expect := []Edge{Edge{
+		From: 0,
+		To:   1,
+	}}
+	actual := g.GetEdges()
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("GetVertices want: %v\nget: %v", expect, actual)
+	}
 }
 
-// TODO: テスト書く
 func TestRemoveEdge(t *testing.T) {
+	g := NewGraph()
+	g.AddVertex(0)
+	g.AddVertex(1)
+	g.AddEdge(0, 1, 0)
 
+	if err := g.RemoveEdge(0, 0); err == nil {
+		t.Error("expect to get error: can not remove an edge of same vertex")
+	}
+
+	if err := g.RemoveEdge(0, 2); err == nil {
+		t.Error("expect to get error: the edge doesn't exist")
+	}
+
+	if err := g.RemoveEdge(0, 1); err != nil {
+		t.Error(err)
+	}
+	if g.edgesCount != 0 {
+		t.Errorf("the count of vertices expects 0, but have %v", g.edgesCount)
+	}
 }
