@@ -40,7 +40,7 @@ func (g *graph) GetVertices() []Vertex {
 	return vertices
 }
 
-// ExistsVertex chech whether the vertex v exists in the graph g, or not
+// ExistsVertex chech whether the vertex `v` exists in the graph `g`, or not
 func (g *graph) ExistsVertex(v Vertex) bool {
 	if _, ok := g.vertices[v]; !ok {
 		return false
@@ -49,8 +49,8 @@ func (g *graph) ExistsVertex(v Vertex) bool {
 	return true
 }
 
-// AddVertex adds a vertex v to the graph g.
-// If a graph has already have the vertex v, it returns an error
+// AddVertex adds a vertex `v` to the graph `g`.
+// If a graph has already have the vertex `v`, it returns an error
 func (g *graph) AddVertex(v Vertex) error {
 	if g.ExistsVertex(v) {
 		return errors.New("g has already have the vertex v")
@@ -60,7 +60,7 @@ func (g *graph) AddVertex(v Vertex) error {
 	return nil
 }
 
-// RemoveVertex remove a vertex form the graph g.
+// RemoveVertex remove a vertex form the graph `g`.
 func (g *graph) RemoveVertex(v Vertex) error {
 	if !g.ExistsVertex(v) {
 		return errors.New("input v doesn't exist in g")
@@ -84,6 +84,8 @@ func (g *graph) GetEdges() []Edge {
 	return edges
 }
 
+// ExistsEdge chech whether the edge difined by `from` and `to`
+// exists in the graph `g`, or not
 func (g *graph) ExistsEdge(from, to Vertex) bool {
 	e := Edge{
 		From: from,
@@ -95,6 +97,11 @@ func (g *graph) ExistsEdge(from, to Vertex) bool {
 	return false
 }
 
+// AddEdge adds an edge difined by `from` and `to` to the graph `g`.
+// If a graph has already have the edge, it returns an error.
+// The graph g must have the vertices `from` and `to`,
+// if `g` don't have `from` or `to`, AddEdge returns an error.
+// The vertices `from` and `to` must be different.
 func (g *graph) AddEdge(from, to Vertex, weight int) error {
 	if from == to {
 		return errors.New("can not add edge to same vertex")
