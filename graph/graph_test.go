@@ -194,22 +194,22 @@ func TestGetWeight(t *testing.T) {
 	}
 }
 
-func TestChangeWeight(t *testing.T) {
+func TestSetWeight(t *testing.T) {
 	g := NewGraph()
 	g.AddVertex(0)
 	g.AddVertex(1)
 	g.AddEdge(0, 1, 0)
 
 	weight := 5
-	if err := g.ChangeWeight(0, 0, weight); err == nil {
-		t.Error("expect to get error: can not change an edge of same vertex")
+	if err := g.SetWeight(0, 0, weight); err == nil {
+		t.Error("expect to get error: can not set an edge of same vertex")
 	}
 
-	if err := g.ChangeWeight(0, 2, weight); err == nil {
+	if err := g.SetWeight(0, 2, weight); err == nil {
 		t.Error("expect to get error: the edge doesn't exist")
 	}
 
-	if err := g.ChangeWeight(0, 1, weight); err != nil {
+	if err := g.SetWeight(0, 1, weight); err != nil {
 		t.Error("expect to get error: the edge doesn't exist")
 	}
 	actual, _ := g.GetWeight(0, 1)

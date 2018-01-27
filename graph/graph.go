@@ -145,6 +145,9 @@ func (g *graph) RemoveEdge(from, to Vertex) error {
 	return nil
 }
 
+// GetWeight returns a weight of the edge difined by `from` and `to`.
+// The vertices `from` and `to` must be different.
+// The edge must exist.
 func (g *graph) GetWeight(from, to Vertex) (int, error) {
 	if from == to {
 		return 0, errors.New("can not get an edge of same vertex")
@@ -162,8 +165,10 @@ func (g *graph) GetWeight(from, to Vertex) (int, error) {
 	return weight, nil
 }
 
-// TODO: 実装する
-func (g *graph) ChangeWeight(from, to Vertex, weight int) error {
+// SetWeight sets a weight to the edge difined by `from` and `to`.
+// The vertices `from` and `to` must be different.
+// The edge must exist.
+func (g *graph) SetWeight(from, to Vertex, weight int) error {
 	if from == to {
 		return errors.New("can not change an edge of same vertex")
 	}
@@ -171,6 +176,11 @@ func (g *graph) ChangeWeight(from, to Vertex, weight int) error {
 	if !g.ExistsEdge(from, to) {
 		return errors.New("the edge doesn't exist")
 	}
+
+	g.edges[Edge{
+		From: from,
+		To:   to,
+	}] = weight
 
 	return nil
 }
