@@ -14,7 +14,7 @@ type Edge struct {
 type graph struct {
 	vertices      map[Vertex]int
 	verticesCount int
-	edges         []Edge
+	edges         map[Edge]int
 	edgesCount    int
 	isDirected    bool
 }
@@ -70,7 +70,39 @@ func (g *graph) RemoveVertex(v Vertex) error {
 	return nil
 }
 
-func (g *graph) AddEdge(from, to Vertex) error {
+// GetEdges returns slice of Edges
+func (g *graph) GetEdges() []Edge {
+	edges := make([]Edge, g.edgesCount)
+
+	i := 0
+	for edge := range g.edges {
+		edges[i] = edge
+		i++
+	}
+
+	return edges
+}
+
+func (g *graph) ExistsEdge(from, to Vertex) bool {
+
+	return false
+}
+
+func (g *graph) AddEdge(from, to Vertex, weight int) error {
+	if from == to {
+		return errors.New("can not add edge to same vertex")
+	}
+
+	if !g.ExistsVertex(from) || !g.ExistsVertex(to) {
+		return errors.New("edge doesn't exist")
+	}
+
+	g.edges[Edge{
+		From: from,
+		To:   to,
+	}] = weight
+
+	g.edgesCount++
 
 	return nil
 }

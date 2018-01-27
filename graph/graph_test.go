@@ -74,3 +74,33 @@ func TestRemoveVertex(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestAddEdge(t *testing.T) {
+	g := NewGraph()
+
+	if err := g.AddEdge(0, 1, 0); err == nil {
+		t.Error("expect to get error: edge doesn't exist")
+	}
+
+	g.AddVertex(0)
+	if err := g.AddEdge(0, 1, 0); err == nil {
+		t.Error("expect to get error: edge doesn't exist")
+	}
+
+	if err := g.AddEdge(0, 0, 0); err == nil {
+		t.Error("expect to get error: can not add edge to same vertex")
+	}
+
+	// TODO: edgeを追加してerrorが返らないことのテスト
+	// TODO: countのテスト
+	// TODO: 同じエッジを追加した場合にエラーになるテスト
+}
+
+// TODO: テスト書く
+func TestGetEdge(t *testing.T) {
+	// g := NewGraph()
+
+	// expect := []Edge{}
+	// actual := g.GetEdges()
+
+}
