@@ -104,7 +104,7 @@ func (g *graph) ExistsEdge(from, to Vertex) bool {
 // The vertices `from` and `to` must be different.
 func (g *graph) AddEdge(from, to Vertex, weight int) error {
 	if from == to {
-		return errors.New("can not add edge to same vertex")
+		return errors.New("can not add ann edge of same vertex")
 	}
 
 	if !g.ExistsVertex(from) || !g.ExistsVertex(to) {
@@ -124,8 +124,23 @@ func (g *graph) AddEdge(from, to Vertex, weight int) error {
 	return nil
 }
 
-// TODO: 実装する
-func (g *graph) RemoveEdge() error {
+// RemoveEdge removes an edge difined by `from` and `to`,
+// form the graph `g`.
+// The vertices `from` and `to` must be different.
+func (g *graph) RemoveEdge(from, to Vertex) error {
+	if from == to {
+		return errors.New("can not remove an edge of same vertex")
+	}
 
+	if !g.ExistsEdge(from, to) {
+		return errors.New("the edge doesn't exist")
+	}
+
+	delete(g.edges, Edge{
+		From: from,
+		To:   to,
+	})
+
+	g.edgesCount--
 	return nil
 }
