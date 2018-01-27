@@ -116,7 +116,6 @@ func main() {
 $ go run main.go
 $ dot -T png ./gv.dot -o ./gv.png
 $ open ./gv.png
-
 ```
 
 ![結果](https://github.com/cipepser/goGraphAlgo/blob/master/graph/example/example.png)
