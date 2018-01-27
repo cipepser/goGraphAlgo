@@ -27,6 +27,11 @@ func NewGraph() *graph {
 	return g
 }
 
+// SetDir sets `isDirected` to true or false by `dir`
+func (g *graph) SetDir(dir bool) {
+	g.isDirected = dir
+}
+
 // GetVertices returns slice of Vertices
 func (g *graph) GetVertices() []Vertex {
 	vertices := make([]Vertex, g.verticesCount)

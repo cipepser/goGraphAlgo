@@ -16,6 +16,19 @@ func TestIsDirected(t *testing.T) {
 	}
 }
 
+func TestSetDir(t *testing.T) {
+	g := NewGraph()
+	g.SetDir(true)
+	if !g.isDirected {
+		t.Error("expect true, but get false")
+	}
+
+	g.SetDir(false)
+	if g.isDirected {
+		t.Error("expect false, but get true")
+	}
+}
+
 func TestExistsVertex(t *testing.T) {
 	g := NewGraph()
 
