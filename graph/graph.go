@@ -98,10 +98,14 @@ func (g *graph) AddEdge(from, to Vertex, weight int) error {
 		return errors.New("edge doesn't exist")
 	}
 
-	g.edges[Edge{
+	e := Edge{
 		From: from,
 		To:   to,
-	}] = weight
+	}
+	if _, ok := g.edges[e]; ok {
+		return errors.New("edge already exists")
+	}
+	g.edges[e] = weight
 
 	g.edgesCount++
 
