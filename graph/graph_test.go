@@ -172,3 +172,49 @@ func TestRemoveEdge(t *testing.T) {
 		t.Errorf("the count of vertices expects 0, but have %v", g.edgesCount)
 	}
 }
+
+func TestGetWeight(t *testing.T) {
+	g := NewGraph()
+	g.AddVertex(0)
+	g.AddVertex(1)
+	weight := 5
+	g.AddEdge(0, 1, weight)
+
+	if _, err := g.GetWeight(0, 0); err == nil {
+		t.Error("expect to get error: can not get an edge of same vertex")
+	}
+
+	if _, err := g.GetWeight(0, 2); err == nil {
+		t.Error("expect to get error: the edge doesn't exist")
+	}
+
+	actual, _ := g.GetWeight(0, 1)
+	if actual != weight {
+		t.Errorf("The weight expects %v, but get %v\n", weight, actual)
+	}
+}
+
+func TestChangeWeight(t *testing.T) {
+	g := NewGraph()
+	g.AddVertex(0)
+	g.AddVertex(1)
+	g.AddEdge(0, 1, 0)
+
+	weight := 5
+	if err := g.ChangeWeight(0, 0, weight); err == nil {
+		t.Error("expect to get error: can not change an edge of same vertex")
+	}
+
+	if err := g.ChangeWeight(0, 2, weight); err == nil {
+		t.Error("expect to get error: the edge doesn't exist")
+	}
+
+	if err := g.ChangeWeight(0, 1, weight); err != nil {
+		t.Error("expect to get error: the edge doesn't exist")
+	}
+	actual, _ := g.GetWeight(0, 1)
+	if actual != weight {
+		t.Errorf("The weight expects %v, but get %v\n", weight, actual)
+	}
+
+}

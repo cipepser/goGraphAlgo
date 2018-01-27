@@ -144,3 +144,33 @@ func (g *graph) RemoveEdge(from, to Vertex) error {
 	g.edgesCount--
 	return nil
 }
+
+func (g *graph) GetWeight(from, to Vertex) (int, error) {
+	if from == to {
+		return 0, errors.New("can not get an edge of same vertex")
+	}
+
+	if !g.ExistsEdge(from, to) {
+		return 0, errors.New("the edge doesn't exist")
+	}
+
+	weight := g.edges[Edge{
+		From: from,
+		To:   to,
+	}]
+
+	return weight, nil
+}
+
+// TODO: 実装する
+func (g *graph) ChangeWeight(from, to Vertex, weight int) error {
+	if from == to {
+		return errors.New("can not change an edge of same vertex")
+	}
+
+	if !g.ExistsEdge(from, to) {
+		return errors.New("the edge doesn't exist")
+	}
+
+	return nil
+}
