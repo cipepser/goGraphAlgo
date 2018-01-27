@@ -23,6 +23,7 @@ type graph struct {
 func NewGraph() *graph {
 	g := new(graph)
 	g.vertices = map[Vertex]int{}
+	g.edges = map[Edge]int{}
 	return g
 }
 
