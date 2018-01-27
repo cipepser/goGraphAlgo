@@ -107,7 +107,6 @@ func TestAddEdge(t *testing.T) {
 	if err := g.AddEdge(0, 1, 0); err == nil {
 		t.Error("expect to get error: edge already exists")
 	}
-
 }
 
 // TODO: テスト書く
