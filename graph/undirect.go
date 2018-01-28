@@ -10,19 +10,21 @@ package graph
 // 	return false
 // }
 
+type Set map[Vertex]struct{}
+
 type DisjointSet interface {
-	MakeSet(g *graph) []map[Vertex]struct{}
-	Union(A, B []map[Vertex]struct{}) []map[Vertex]struct{}
-	FindSet()
+	MakeSet(g *graph) []Set
+	Union(A, B Set) Set
+	FindSet(e Edge, U []Set) (Set, Set)
 }
 
 // MakeSet returns a set of the vertices
 // to solve by disjoint-set algorithm(initiallize)
-func MakeSet(g *graph) []map[Vertex]struct{} {
-	sets := make([]map[Vertex]struct{}, g.verticesCount)
+func MakeSet(g *graph) []Set {
+	sets := make([]Set, g.verticesCount)
 
 	for i, v := range g.GetVertices() {
-		sets[i] = map[Vertex]struct{}{
+		sets[i] = Set{
 			v: struct{}{},
 		}
 	}
@@ -31,8 +33,8 @@ func MakeSet(g *graph) []map[Vertex]struct{} {
 
 // Union unions two sets into a set.
 // AddVertex guarantees all vertices is different.
-func Union(A, B map[Vertex]struct{}) map[Vertex]struct{} {
-	U := make(map[Vertex]struct{}, len(A)+len(B))
+func Union(A, B Set) Set {
+	U := make(Set, len(A)+len(B))
 
 	for a := range A {
 		U[a] = struct{}{}
@@ -42,11 +44,12 @@ func Union(A, B map[Vertex]struct{}) map[Vertex]struct{} {
 	}
 
 	return U
+	// TODO: 結合する前の全体集合からAとBを消してUを追加する必要がある
 }
 
 // FindSet returns the sets contains the vertex
 // both ends of the edge `e`
-func FindSet(e Edge, U []map[Vertex]struct{}) (A, B map[Vertex]struct{}) {
+func FindSet(e Edge, U []Set) (A, B Set) {
 	for _, set := range U {
 		if _, ok := set[e.From]; ok {
 			A = set

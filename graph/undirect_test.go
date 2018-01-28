@@ -12,9 +12,9 @@ func TestMakeSet(t *testing.T) {
 
 	actual := MakeSet(g)
 
-	expect := []map[Vertex]struct{}{
-		map[Vertex]struct{}{0: struct{}{}},
-		map[Vertex]struct{}{1: struct{}{}},
+	expect := []Set{
+		Set{0: struct{}{}},
+		Set{1: struct{}{}},
 	}
 
 	if !reflect.DeepEqual(expect, actual) {
@@ -23,12 +23,12 @@ func TestMakeSet(t *testing.T) {
 }
 
 func TestUnion(t *testing.T) {
-	A := map[Vertex]struct{}{0: struct{}{}}
-	B := map[Vertex]struct{}{1: struct{}{}}
+	A := Set{0: struct{}{}}
+	B := Set{1: struct{}{}}
 
 	actual := Union(A, B)
 
-	expect := map[Vertex]struct{}{
+	expect := Set{
 		0: struct{}{},
 		1: struct{}{},
 	}
@@ -49,8 +49,8 @@ func TestFindSet(t *testing.T) {
 
 	actA, actB := FindSet(e, U)
 
-	expA := map[Vertex]struct{}{0: struct{}{}}
-	expB := map[Vertex]struct{}{1: struct{}{}}
+	expA := Set{0: struct{}{}}
+	expB := Set{1: struct{}{}}
 
 	if !reflect.DeepEqual(expA, actA) || !reflect.DeepEqual(expB, actB) {
 		t.Errorf("\n[expect]\nA: %v\nB: %v\n[actual]\nA: %v\nB: %v",
