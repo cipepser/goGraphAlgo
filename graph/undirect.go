@@ -28,3 +28,25 @@ func MakeSet(g *graph) []map[Vertex]struct{} {
 	}
 	return sets
 }
+
+// Union unions two sets into a set.
+// AddVertex guarantees all vertices is different.
+func Union(A, B []map[Vertex]struct{}) []map[Vertex]struct{} {
+	U := make([]map[Vertex]struct{}, len(A)+len(B))
+
+	i := 0
+	for _, a := range A {
+		U[i] = a
+		i++
+	}
+	for _, b := range B {
+		U[i] = b
+		i++
+	}
+
+	return U
+}
+
+func FindSet() {
+
+}
