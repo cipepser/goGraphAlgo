@@ -125,5 +125,7 @@ $ open ./gv.png
 * [gographviz](https://github.com/awalterschulze/gographviz)
 * [graph](https://github.com/cipepser/goGraphAlgo/tree/master/graph)
 * [graph-go](https://github.com/arnauddri/algorithms/blob/master/data-structures/graph/graph.go)
+* [SliceTricks](https://github.com/golang/go/wiki/SliceTricks)
+
 ## License
 MIT
