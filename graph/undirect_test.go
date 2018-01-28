@@ -21,3 +21,24 @@ func TestMakeSet(t *testing.T) {
 		t.Errorf("expect: %v\nactual: %v", expect, actual)
 	}
 }
+
+func TestUnion(t *testing.T) {
+	A := []map[Vertex]struct{}{
+		map[Vertex]struct{}{0: struct{}{}},
+	}
+
+	B := []map[Vertex]struct{}{
+		map[Vertex]struct{}{1: struct{}{}},
+	}
+
+	actual := Union(A, B)
+
+	expect := []map[Vertex]struct{}{
+		map[Vertex]struct{}{0: struct{}{}},
+		map[Vertex]struct{}{1: struct{}{}},
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("expect: %v\nactual: %v", expect, actual)
+	}
+}
