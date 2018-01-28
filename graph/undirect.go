@@ -1,5 +1,7 @@
 package graph
 
+import "reflect"
+
 // func (g *graph) ExistsCycle() bool {
 //
 // 	return false
@@ -35,19 +37,37 @@ func MakeSet(g *graph) []Set {
 
 // Union unions two sets into a set.
 // AddVertex guarantees all vertices is different.
-func Union(A, B Set) Set {
-	U := make(Set, len(A)+len(B))
+// func Union(A, B Set, U []Set) (Set, []Set) {
+// 	C := make(Set, len(A)+len(B))
+//
+// 	for a := range A {
+// 		C[a] = struct{}{}
+// 	}
+// 	for b := range B {
+// 		C[b] = struct{}{}
+// 	}
+//
+// 	return C, U
+// 	// TODO: 結合する前の全体集合からAとBを消してUを追加する必要がある
+// }
 
-	for a := range A {
-		U[a] = struct{}{}
+// Contains checks whether U contains A or not
+func Contains(A Set, U []Set) bool {
+	for _, u := range U {
+		if reflect.DeepEqual(u, A) {
+			return true
+		}
 	}
-	for b := range B {
-		U[b] = struct{}{}
-	}
-
-	return U
-	// TODO: 結合する前の全体集合からAとBを消してUを追加する必要がある
+	return false
 }
+
+// func Add(A Set, U []Set) []Set {
+//
+// }
+//
+// func Remove(A Set, U []Set) []Set {
+//
+// }
 
 // FindSet returns the sets contains the vertex
 // both ends of the edge `e`
