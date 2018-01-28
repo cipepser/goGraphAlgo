@@ -99,6 +99,36 @@ func TestAdd(t *testing.T) {
 	}
 }
 
+func TestRemove(t *testing.T) {
+	A := Set{3: struct{}{}}
+
+	U := []Set{
+		Set{0: struct{}{}},
+		Set{1: struct{}{}},
+		Set{2: struct{}{}},
+	}
+	if _, err := Remove(A, U); err == nil {
+		t.Error("expect to get error: A does not exist in U")
+	}
+
+	B := Set{1: struct{}{}}
+
+	actual, err := Remove(B, U)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expect := []Set{
+		Set{0: struct{}{}},
+		Set{2: struct{}{}},
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
+
+}
+
 func TestFindSet(t *testing.T) {
 	g := NewGraph()
 	g.AddVertex(0)
