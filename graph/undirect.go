@@ -10,8 +10,10 @@ package graph
 // 	return false
 // }
 
+// Set is a set consists of the vertex or vertices
 type Set map[Vertex]struct{}
 
+// DisjointSet is an interface to execute Disjoint-Set Algorithm
 type DisjointSet interface {
 	MakeSet(g *graph) []Set
 	Union(A, B Set) Set
