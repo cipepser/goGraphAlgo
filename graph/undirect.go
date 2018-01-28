@@ -1,6 +1,9 @@
 package graph
 
-import "reflect"
+import (
+	"errors"
+	"reflect"
+)
 
 // func (g *graph) ExistsCycle() bool {
 //
@@ -61,10 +64,15 @@ func Contains(A Set, U []Set) bool {
 	return false
 }
 
-// func Add(A Set, U []Set) []Set {
-//
-// }
-//
+// Add adds A to U
+func Add(A Set, U []Set) ([]Set, error) {
+	if Contains(A, U) {
+		return nil, errors.New("A is aleady in U")
+	}
+
+	return append(U, A), nil
+}
+
 // func Remove(A Set, U []Set) []Set {
 //
 // }

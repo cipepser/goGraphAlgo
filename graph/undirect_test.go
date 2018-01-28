@@ -68,7 +68,35 @@ func TestContains(t *testing.T) {
 	if Contains(B, U) {
 		t.Error("U is epected not to contains B, but contains\n")
 	}
+}
 
+func TestAdd(t *testing.T) {
+	A := Set{0: struct{}{}}
+
+	U := []Set{
+		Set{0: struct{}{}},
+		Set{1: struct{}{}},
+	}
+	if _, err := Add(A, U); err == nil {
+		t.Error("expect to get error: A is aleady in U")
+	}
+
+	B := Set{2: struct{}{}}
+
+	actual, err := Add(B, U)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expect := []Set{
+		Set{0: struct{}{}},
+		Set{1: struct{}{}},
+		Set{2: struct{}{}},
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
 }
 
 func TestFindSet(t *testing.T) {
