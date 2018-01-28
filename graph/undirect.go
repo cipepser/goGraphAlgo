@@ -18,6 +18,8 @@ import (
 // Set is a set consists of the vertex or vertices
 type Set map[Vertex]struct{}
 
+// TODO: []Set型をrecieverにする実装のほうがよい
+
 // DisjointSet is an interface to execute Disjoint-Set Algorithm
 type DisjointSet interface {
 	MakeSet(g *graph) []Set
@@ -40,19 +42,28 @@ func MakeSet(g *graph) []Set {
 
 // Union unions two sets into a set.
 // AddVertex guarantees all vertices is different.
-// func Union(A, B Set, U []Set) (Set, []Set) {
-// 	C := make(Set, len(A)+len(B))
-//
-// 	for a := range A {
-// 		C[a] = struct{}{}
-// 	}
-// 	for b := range B {
-// 		C[b] = struct{}{}
-// 	}
-//
-// 	return C, U
-// 	// TODO: 結合する前の全体集合からAとBを消してUを追加する必要がある
-// }
+func Union(A, B Set, U []Set) (Set, []Set, error) {
+	C := make(Set, len(A)+len(B))
+	for a := range A {
+		C[a] = struct{}{}
+	}
+	for b := range B {
+		C[b] = struct{}{}
+	}
+
+	if _, err := Remove(A, U); err != nil {
+		return nil, nil, err
+	}
+	if _, err := Remove(B, U); err != nil {
+		return nil, nil, err
+	}
+
+	if _, err := Add(C, U); err != nil {
+		return nil, nil, err
+	}
+
+	return C, U, nil
+}
 
 // Contains checks whether U contains A or not
 func Contains(A Set, U []Set) bool {

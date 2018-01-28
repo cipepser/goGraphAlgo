@@ -22,34 +22,34 @@ func TestMakeSet(t *testing.T) {
 	}
 }
 
-// func TestUnion(t *testing.T) {
-// 	A := Set{0: struct{}{}}
-// 	B := Set{1: struct{}{}}
-//
-// 	U := []Set{
-// 		Set{0: struct{}{}},
-// 		Set{1: struct{}{}},
-// 		Set{2: struct{}{}},
-// 	}
-//
-// 	actC, actU := Union(A, B, U)
-//
-// 	expC := Set{
-// 		0: struct{}{},
-// 		1: struct{}{},
-// 	}
-// 	expU := []Set{
-// 		expC,
-// 		Set{2: struct{}{}},
-// 	}
-//
-// 	if !reflect.DeepEqual(expC, actC) {
-// 		t.Errorf("expected C and actual C is different\nexpect: %v\nactual: %v", expC, actC)
-// 	}
-// 	if !reflect.DeepEqual(expU, actU) {
-// 		t.Errorf("expected U and actual U is different\nexpect: %v\nactual: %v", expU, actU)
-// 	}
-// }
+func TestUnion(t *testing.T) {
+	A := Set{0: struct{}{}}
+	B := Set{1: struct{}{}}
+
+	U := []Set{
+		Set{0: struct{}{}},
+		Set{1: struct{}{}},
+		Set{2: struct{}{}},
+	}
+
+	actC, actU := Union(A, B, U)
+
+	expC := Set{
+		0: struct{}{},
+		1: struct{}{},
+	}
+	expU := []Set{
+		expC,
+		Set{2: struct{}{}},
+	}
+
+	if !reflect.DeepEqual(expC, actC) {
+		t.Errorf("expected C and actual C is different\nexpect: %v\nactual: %v", expC, actC)
+	}
+	if !reflect.DeepEqual(expU, actU) {
+		t.Errorf("expected U and actual U is different\nexpect: %v\nactual: %v", expU, actU)
+	}
+}
 
 func TestContains(t *testing.T) {
 	A := Set{0: struct{}{}}
