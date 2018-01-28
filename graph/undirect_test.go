@@ -53,7 +53,7 @@ func TestFindSet(t *testing.T) {
 	expB := map[Vertex]struct{}{1: struct{}{}}
 
 	if !reflect.DeepEqual(expA, actA) || !reflect.DeepEqual(expB, actB) {
-		t.Errorf("[expect]\nA: %v\nB: %v\n[actual]\nA: %v\nB: %v",
+		t.Errorf("\n[expect]\nA: %v\nB: %v\n[actual]\nA: %v\nB: %v",
 			expA, expB, actA, actB)
 	}
 
