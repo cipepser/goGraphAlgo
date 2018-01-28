@@ -46,7 +46,15 @@ func Union(A, B map[Vertex]struct{}) map[Vertex]struct{} {
 
 // FindSet returns the sets contains the vertex
 // both ends of the edge `e`
-func FindSet(e Edge) (A, B []map[Vertex]struct{}) {
+func FindSet(e Edge, U []map[Vertex]struct{}) (A, B map[Vertex]struct{}) {
+	for _, set := range U {
+		if _, ok := set[e.From]; ok {
+			A = set
+		}
+		if _, ok := set[e.To]; ok {
+			B = set
+		}
+	}
 
 	return A, B
 }
