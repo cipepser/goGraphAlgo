@@ -73,9 +73,26 @@ func Add(A Set, U []Set) ([]Set, error) {
 	return append(U, A), nil
 }
 
-// func Remove(A Set, U []Set) []Set {
-//
-// }
+// Remove removes A from U
+func Remove(A Set, U []Set) ([]Set, error) {
+	if !Contains(A, U) {
+		return nil, errors.New("A does not exist in U")
+	}
+
+	i := 0
+	for j, u := range U {
+		if reflect.DeepEqual(u, A) {
+			i = j
+			break
+		}
+	}
+
+	copy(U[i:], U[i+1:])
+	U[len(U)-1] = nil
+	U = U[:len(U)-1]
+
+	return U, nil
+}
 
 // FindSet returns the sets contains the vertex
 // both ends of the edge `e`
