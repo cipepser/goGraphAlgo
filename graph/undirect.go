@@ -21,14 +21,14 @@ type DisjointSet interface {
 // MakeSet returns a set of the vertices
 // to solve by disjoint-set algorithm(initiallize)
 func MakeSet(g *graph) []Set {
-	sets := make([]Set, g.verticesCount)
+	U := make([]Set, g.verticesCount)
 
 	for i, v := range g.GetVertices() {
-		sets[i] = Set{
+		U[i] = Set{
 			v: struct{}{},
 		}
 	}
-	return sets
+	return U
 }
 
 // Union unions two sets into a set.
