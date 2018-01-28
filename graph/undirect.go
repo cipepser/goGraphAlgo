@@ -11,8 +11,8 @@ package graph
 // }
 
 type DisjointSet interface {
-	MakeSet() []map[Vertex]struct{}
-	Union()
+	MakeSet(g *graph) []map[Vertex]struct{}
+	Union(A, B []map[Vertex]struct{}) []map[Vertex]struct{}
 	FindSet()
 }
 
@@ -31,22 +31,22 @@ func MakeSet(g *graph) []map[Vertex]struct{} {
 
 // Union unions two sets into a set.
 // AddVertex guarantees all vertices is different.
-func Union(A, B []map[Vertex]struct{}) []map[Vertex]struct{} {
-	U := make([]map[Vertex]struct{}, len(A)+len(B))
+func Union(A, B map[Vertex]struct{}) map[Vertex]struct{} {
+	U := make(map[Vertex]struct{}, len(A)+len(B))
 
-	i := 0
-	for _, a := range A {
-		U[i] = a
-		i++
+	for a := range A {
+		U[a] = struct{}{}
 	}
-	for _, b := range B {
-		U[i] = b
-		i++
+	for b := range B {
+		U[b] = struct{}{}
 	}
 
 	return U
 }
 
-func FindSet() {
+// FindSet returns the sets contains the vertex
+// both ends of the edge `e`
+func FindSet(e Edge) (A, B []map[Vertex]struct{}) {
 
+	return A, B
 }

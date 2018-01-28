@@ -23,19 +23,15 @@ func TestMakeSet(t *testing.T) {
 }
 
 func TestUnion(t *testing.T) {
-	A := []map[Vertex]struct{}{
-		map[Vertex]struct{}{0: struct{}{}},
-	}
+	A := map[Vertex]struct{}{0: struct{}{}}
 
-	B := []map[Vertex]struct{}{
-		map[Vertex]struct{}{1: struct{}{}},
-	}
+	B := map[Vertex]struct{}{1: struct{}{}}
 
 	actual := Union(A, B)
 
-	expect := []map[Vertex]struct{}{
-		map[Vertex]struct{}{0: struct{}{}},
-		map[Vertex]struct{}{1: struct{}{}},
+	expect := map[Vertex]struct{}{
+		0: struct{}{},
+		1: struct{}{},
 	}
 
 	if !reflect.DeepEqual(expect, actual) {
