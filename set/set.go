@@ -1,5 +1,10 @@
 package set
 
+import (
+	"errors"
+	"strconv"
+)
+
 // Set is an interface should be implemented as a mathematically set.
 type Set interface {
 	// Add adds an `i` to the Set.
@@ -11,7 +16,7 @@ type Set interface {
 	// Cardinality returns the number of elements in the Set.
 	Cardinality() int
 
-	// Contains checks whether an in exists in the Set or not.
+	// Contains checks whether an `i` exists in the Set or not.
 	Contains(i interface{}) bool
 
 	// Difference returns the difference of the Set and {other}.
@@ -35,8 +40,18 @@ func NewIntSet() IntSet {
 	return make(IntSet, 0)
 }
 
+// Contains checks whether an `i` exists in `s` or not.
+func (s IntSet) Contains(i int) bool {
+	_, ok := s[i]
+	return ok
+}
+
 // Add adds an `i` to `s`.
 func (s IntSet) Add(i int) error {
+	if s.Contains(i) {
+		return errors.New(strconv.Itoa(i) + " already exists")
+	}
+	s[i] = struct{}{}
 	return nil
 }
 
@@ -48,11 +63,6 @@ func (s IntSet) Remove(i int) error {
 func (s IntSet) Cardinality() int {
 
 	return -1
-}
-
-func (s IntSet) Contains(i int) bool {
-
-	return false
 }
 
 func (s IntSet) Difference(other IntSet) IntSet {

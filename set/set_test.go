@@ -15,9 +15,36 @@ func TestNewIntSet(t *testing.T) {
 	}
 }
 
-func TestAdd(t *testing.T) {
-	// Add(i interface{}) error
+func TestContains(t *testing.T) {
+	s := NewIntSet()
+	if s.Contains(0) == true {
+		t.Error("s expects not to have any element, but get true")
+	}
 
+	s.Add(0)
+	if s.Contains(0) == false {
+		t.Error("s expects to have 0, but get false")
+	}
+}
+
+func TestAdd(t *testing.T) {
+	s := NewIntSet()
+	if err := s.Add(0); err != nil {
+		t.Error(err)
+	}
+
+	s.Add(0)
+	if err := s.Add(0); err == nil {
+		t.Error("expect to get error: 0 already exists")
+	}
+
+	expect := IntSet{
+		0: struct{}{},
+	}
+
+	if !reflect.DeepEqual(expect, s) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, s)
+	}
 }
 
 func TestRemove(t *testing.T) {
@@ -27,11 +54,6 @@ func TestRemove(t *testing.T) {
 
 func TestCardinality(t *testing.T) {
 	// Cardinality() int
-
-}
-
-func TestContains(t *testing.T) {
-	// Contains(i interface{}) bool
 
 }
 
