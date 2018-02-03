@@ -20,7 +20,7 @@ type Set interface {
 	// Contains checks whether an `i` exists in the Set or not.
 	Contains(i interface{}) bool
 
-	// Difference returns the difference of the Set and {other}.
+	// Difference returns the difference of the Set and `other`.
 	Difference(other Set) Set
 
 	// Equal checks whether `other` is same as the Set or not.
@@ -70,21 +70,24 @@ func (s IntSet) Cardinality() int {
 	return len(s)
 }
 
-// Equal checks whether `other` is same as s or not.
+// Equal checks whether `other` is same as `s` or not.
 func (s IntSet) Equal(other IntSet) bool {
 	return reflect.DeepEqual(s, other)
 }
 
+// Difference returns the difference of `s` and `other`.
 func (s IntSet) Difference(other IntSet) IntSet {
 
 	return nil
 }
 
+// Intersect returns the Intersection of `s` and `other`.
 func (s IntSet) Intersect(other IntSet) IntSet {
 
 	return nil
 }
 
+// Union returns the Union of `s` and `other`
 func (s IntSet) Union(other IntSet) IntSet {
 
 	return nil
