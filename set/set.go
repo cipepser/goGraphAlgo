@@ -28,19 +28,19 @@ type Set interface {
 }
 
 // IntSet represents a set of ints.
-type IntSet []int
+type IntSet map[int]struct{}
 
 // NewIntSet constructs a new IntSet.
 func NewIntSet() IntSet {
 	return make(IntSet, 0)
 }
 
-func (s IntSet) Add(i interface{}) error {
-
+// Add adds an `i` to `s`.
+func (s IntSet) Add(i int) error {
 	return nil
 }
 
-func (s IntSet) Remove(i interface{}) error {
+func (s IntSet) Remove(i int) error {
 
 	return nil
 }
@@ -50,7 +50,7 @@ func (s IntSet) Cardinality() int {
 	return -1
 }
 
-func (s IntSet) Contains(i interface{}) bool {
+func (s IntSet) Contains(i int) bool {
 
 	return false
 }
