@@ -102,6 +102,13 @@ func (s IntSet) Intersect(other IntSet) IntSet {
 // Union returns the Union of `s` and `other`
 // Union have a referential transparency.
 func (s IntSet) Union(other IntSet) IntSet {
+	u := NewIntSet()
+	for i := range s {
+		u[i] = struct{}{}
+	}
+	for i := range other {
+		u[i] = struct{}{}
+	}
 
-	return nil
+	return u
 }

@@ -132,6 +132,21 @@ func TestIntersect(t *testing.T) {
 }
 
 func TestUnion(t *testing.T) {
-	// Union(other Set) Set
+	s0 := NewIntSet()
+	s0.Add(0)
+	s0.Add(1)
 
+	s1 := NewIntSet()
+	s1.Add(1)
+	s1.Add(2)
+
+	expect := IntSet{
+		0: struct{}{},
+		1: struct{}{},
+		2: struct{}{},
+	}
+	actual := s0.Union(s1)
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
 }
