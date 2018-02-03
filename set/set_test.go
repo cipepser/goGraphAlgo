@@ -98,8 +98,20 @@ func TestEqual(t *testing.T) {
 }
 
 func TestDifference(t *testing.T) {
-	// Difference(other Set) Set
+	s0 := NewIntSet()
+	s0.Add(0)
+	s0.Add(1)
 
+	s1 := NewIntSet()
+	s1.Add(1)
+
+	expect := IntSet{
+		0: struct{}{},
+	}
+	actual := s0.Difference(s1)
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
 }
 
 func TestIntersect(t *testing.T) {

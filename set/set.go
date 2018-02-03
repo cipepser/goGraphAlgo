@@ -77,8 +77,13 @@ func (s IntSet) Equal(other IntSet) bool {
 
 // Difference returns the difference of `s` and `other`.
 func (s IntSet) Difference(other IntSet) IntSet {
-
-	return nil
+	d := NewIntSet()
+	for i := range s {
+		if _, ok := other[i]; !ok {
+			d.Add(i)
+		}
+	}
+	return d
 }
 
 // Intersect returns the Intersection of `s` and `other`.
