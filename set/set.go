@@ -88,8 +88,13 @@ func (s IntSet) Difference(other IntSet) IntSet {
 
 // Intersect returns the Intersection of `s` and `other`.
 func (s IntSet) Intersect(other IntSet) IntSet {
-
-	return nil
+	inter := NewIntSet()
+	for i := range s {
+		if _, ok := other[i]; ok {
+			inter.Add(i)
+		}
+	}
+	return inter
 }
 
 // Union returns the Union of `s` and `other`
