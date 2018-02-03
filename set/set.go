@@ -27,6 +27,7 @@ type Set interface {
 	Union(other Set) Set
 }
 
+// IntSet represents a set of ints.
 type IntSet []int
 
 // NewIntSet constructs a new IntSet.
