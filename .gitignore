@@ -2,3 +2,4 @@ tmp.go
 .DS_Store
 graph/gv.dot
 graph/gv.png
+tmp/
