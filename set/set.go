@@ -2,6 +2,7 @@ package set
 
 import (
 	"errors"
+	"reflect"
 	"strconv"
 )
 
@@ -22,7 +23,7 @@ type Set interface {
 	// Difference returns the difference of the Set and {other}.
 	Difference(other Set) Set
 
-	// Equal checks whether {other} is same as the Set or not.
+	// Equal checks whether `other` is same as the Set or not.
 	Equal(other Set) bool
 
 	// Intersect returns the Intersection of the Set and `other`.
@@ -69,14 +70,14 @@ func (s IntSet) Cardinality() int {
 	return len(s)
 }
 
+// Equal checks whether `other` is same as s or not.
+func (s IntSet) Equal(other IntSet) bool {
+	return reflect.DeepEqual(s, other)
+}
+
 func (s IntSet) Difference(other IntSet) IntSet {
 
 	return nil
-}
-
-func (s IntSet) Equal(other IntSet) bool {
-
-	return false
 }
 
 func (s IntSet) Intersect(other IntSet) IntSet {

@@ -83,13 +83,22 @@ func TestCardinality(t *testing.T) {
 	}
 }
 
-func TestDifference(t *testing.T) {
-	// Difference(other Set) Set
+func TestEqual(t *testing.T) {
+	s := NewIntSet()
+	s.Add(0)
+	s.Add(1)
 
+	expect := IntSet{
+		0: struct{}{},
+		1: struct{}{},
+	}
+	if !s.Equal(expect) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, s)
+	}
 }
 
-func TestEqual(t *testing.T) {
-	// Equal(other Set) bool
+func TestDifference(t *testing.T) {
+	// Difference(other Set) Set
 
 }
 
