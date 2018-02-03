@@ -1,9 +1,18 @@
 package set
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestNewIntSet(t *testing.T) {
+	expect := IntSet{}
 
+	actual := NewIntSet()
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
 }
 
 func TestAdd(t *testing.T) {

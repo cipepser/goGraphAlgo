@@ -29,9 +29,9 @@ type Set interface {
 
 type IntSet []int
 
+// NewIntSet constructs a new IntSet.
 func NewIntSet() IntSet {
-
-	return nil
+	return make(IntSet, 0)
 }
 
 func (s IntSet) Add(i interface{}) error {
