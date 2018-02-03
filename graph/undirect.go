@@ -85,3 +85,85 @@ func (s VerSet) Union(other VerSet) VerSet {
 
 	return u
 }
+
+//////////////////////////////////////////////////////////////////
+
+// Family is set of VerSet.
+type Family map[*VerSet]struct{}
+
+// NewFamily constructs a new Family.
+func NewFamily() Family {
+	return make(Family, 0)
+}
+
+// // Contains checks whether an `v` exists in f or not.
+// func (f Family) Contains(s VerSet) bool {
+// 	_, ok := f[s]
+// 	return ok
+// }
+
+// // Add adds an `v` to f.
+// func (f Family) Add(s VerSet) error {
+// 	if f.Contains(s) {
+// 		return errors.New(strconv.FormatUint(uint64(s), 10) + " already exists")
+// 	}
+// 	f[s] = struct{}{}
+// 	return nil
+// }
+//
+// // Remove removes an `v` from f.
+// func (f Family) Remove(s VerSet) error {
+// 	if !f.Contains(s) {
+// 		return errors.New(strconv.FormatUint(uint64(s), 10) + " dose not exist")
+// 	}
+// 	delete(f, s)
+// 	return nil
+// }
+//
+// // Cardinality returns the number of elements in the Set.
+// func (f Family) Cardinality() int {
+// 	return len(f)
+// }
+//
+// // Equal checks whether `other` is same as f or not.
+// func (f Family) Equal(other Family) bool {
+// 	return reflect.DeepEqual(f, other)
+// }
+//
+// // Difference returns the difference of f and `other`.
+// // Difference have a referential transparency.
+// func (f Family) Difference(other Family) Family {
+// 	d := NewFamily()
+// 	for s := range f {
+// 		if _, ok := other[s]; !ok {
+// 			d.Add(s)
+// 		}
+// 	}
+// 	return d
+// }
+//
+// // Intersect returns the Intersection of f and `other`.
+// // Intersect have a referential transparency.
+// func (f Family) Intersect(other Family) Family {
+// 	inter := NewFamily()
+// 	for s := range f {
+// 		if _, ok := other[s]; ok {
+// 			inter.Add(s)
+// 		}
+// 	}
+// 	return inter
+// }
+//
+// // Union returns the Union of f and `other`
+// // Union have a referential transparency.
+// func (f Family) Union(other Family) Family {
+// 	u := NewFamily()
+// 	for s := range f {
+// 		u[s] = struct{}{}
+// 	}
+// 	for s := range other {
+// 		u[s] = struct{}{}
+// 	}
+//
+// 	return u
+// }
