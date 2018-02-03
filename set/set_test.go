@@ -2,6 +2,7 @@ package set
 
 import (
 	"reflect"
+	"strconv"
 	"testing"
 )
 
@@ -67,8 +68,19 @@ func TestRemove(t *testing.T) {
 }
 
 func TestCardinality(t *testing.T) {
-	// Cardinality() int
+	s := NewIntSet()
 
+	s.Add(0)
+	s.Add(1)
+
+	if s.Cardinality() != 2 {
+		t.Error("\nexpect: 2\nactual:", strconv.Itoa(s.Cardinality())+"\n")
+	}
+
+	s.Remove(0)
+	if s.Cardinality() != 1 {
+		t.Error("\nexpect: 1\nactual:", strconv.Itoa(s.Cardinality())+"\n")
+	}
 }
 
 func TestDifference(t *testing.T) {

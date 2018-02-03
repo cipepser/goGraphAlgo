@@ -64,9 +64,9 @@ func (s IntSet) Remove(i int) error {
 	return nil
 }
 
+// Cardinality returns the number of elements in the Set.
 func (s IntSet) Cardinality() int {
-
-	return -1
+	return len(s)
 }
 
 func (s IntSet) Difference(other IntSet) IntSet {
