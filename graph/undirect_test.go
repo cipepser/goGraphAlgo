@@ -16,7 +16,7 @@ func TestNewVerSet(t *testing.T) {
 	}
 }
 
-func TestContains(t *testing.T) {
+func TestVerSetContains(t *testing.T) {
 	s := NewVerSet()
 	if s.Contains(0) == true {
 		t.Error("s expects not to have any element, but get true")
@@ -28,7 +28,7 @@ func TestContains(t *testing.T) {
 	}
 }
 
-func TestAdd(t *testing.T) {
+func TestVerSetAdd(t *testing.T) {
 	s := NewVerSet()
 	if err := s.Add(0); err != nil {
 		t.Error(err)
@@ -47,7 +47,7 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestRemove(t *testing.T) {
+func TestVerSetRemove(t *testing.T) {
 	s := NewVerSet()
 	if err := s.Remove(0); err == nil {
 		t.Error("expect to get error: 0 dose not exist")
@@ -67,7 +67,7 @@ func TestRemove(t *testing.T) {
 	}
 }
 
-func TestCardinality(t *testing.T) {
+func TestVerSetCardinality(t *testing.T) {
 	s := NewVerSet()
 
 	s.Add(0)
@@ -83,7 +83,7 @@ func TestCardinality(t *testing.T) {
 	}
 }
 
-func TestEqual(t *testing.T) {
+func TestVerSetEqual(t *testing.T) {
 	s := NewVerSet()
 	s.Add(0)
 	s.Add(1)
@@ -97,7 +97,7 @@ func TestEqual(t *testing.T) {
 	}
 }
 
-func TestDifference(t *testing.T) {
+func TestVerSetDifference(t *testing.T) {
 	s0 := NewVerSet()
 	s0.Add(0)
 	s0.Add(1)
@@ -114,7 +114,7 @@ func TestDifference(t *testing.T) {
 	}
 }
 
-func TestIntersect(t *testing.T) {
+func TestVerSetIntersect(t *testing.T) {
 	s0 := NewVerSet()
 	s0.Add(0)
 	s0.Add(1)
@@ -131,7 +131,7 @@ func TestIntersect(t *testing.T) {
 	}
 }
 
-func TestUnion(t *testing.T) {
+func TestVerSetUnion(t *testing.T) {
 	s0 := NewVerSet()
 	s0.Add(0)
 	s0.Add(1)
