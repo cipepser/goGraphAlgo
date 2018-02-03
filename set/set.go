@@ -55,8 +55,12 @@ func (s IntSet) Add(i int) error {
 	return nil
 }
 
+// Remove removes an `i` from `s`.
 func (s IntSet) Remove(i int) error {
-
+	if !s.Contains(i) {
+		return errors.New(strconv.Itoa(i) + " dose not exist")
+	}
+	delete(s, i)
 	return nil
 }
 

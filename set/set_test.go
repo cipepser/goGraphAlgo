@@ -41,15 +41,29 @@ func TestAdd(t *testing.T) {
 	expect := IntSet{
 		0: struct{}{},
 	}
-
 	if !reflect.DeepEqual(expect, s) {
 		t.Errorf("\nexpect: %v\nactual: %v\n", expect, s)
 	}
 }
 
 func TestRemove(t *testing.T) {
-	// Remove(i interface{}) error
+	s := NewIntSet()
+	if err := s.Remove(0); err == nil {
+		t.Error("expect to get error: 0 dose not exist")
+	}
 
+	s.Add(0)
+	s.Add(1)
+	if err := s.Remove(0); err != nil {
+		t.Error(err)
+	}
+
+	expect := IntSet{
+		1: struct{}{},
+	}
+	if !reflect.DeepEqual(expect, s) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, s)
+	}
 }
 
 func TestCardinality(t *testing.T) {
