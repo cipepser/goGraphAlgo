@@ -26,3 +26,50 @@ type Set interface {
 	// Union returns the Union of the Set and `other`
 	Union(other Set) Set
 }
+
+type IntSet []int
+
+func NewIntSet() IntSet {
+
+	return nil
+}
+
+func (s IntSet) Add(i interface{}) error {
+
+	return nil
+}
+
+func (s IntSet) Remove(i interface{}) error {
+
+	return nil
+}
+
+func (s IntSet) Cardinality() int {
+
+	return -1
+}
+
+func (s IntSet) Contains(i interface{}) bool {
+
+	return false
+}
+
+func (s IntSet) Difference(other IntSet) IntSet {
+
+	return nil
+}
+
+func (s IntSet) Equal(other IntSet) bool {
+
+	return false
+}
+
+func (s IntSet) Intersect(other IntSet) IntSet {
+
+	return nil
+}
+
+func (s IntSet) Union(other IntSet) IntSet {
+
+	return nil
+}
