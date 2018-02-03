@@ -76,6 +76,7 @@ func (s IntSet) Equal(other IntSet) bool {
 }
 
 // Difference returns the difference of `s` and `other`.
+// Difference have a referential transparency.
 func (s IntSet) Difference(other IntSet) IntSet {
 	d := NewIntSet()
 	for i := range s {
@@ -87,6 +88,7 @@ func (s IntSet) Difference(other IntSet) IntSet {
 }
 
 // Intersect returns the Intersection of `s` and `other`.
+// Intersect have a referential transparency.
 func (s IntSet) Intersect(other IntSet) IntSet {
 	inter := NewIntSet()
 	for i := range s {
@@ -98,6 +100,7 @@ func (s IntSet) Intersect(other IntSet) IntSet {
 }
 
 // Union returns the Union of `s` and `other`
+// Union have a referential transparency.
 func (s IntSet) Union(other IntSet) IntSet {
 
 	return nil
