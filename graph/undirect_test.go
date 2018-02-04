@@ -150,14 +150,3 @@ func TestVerSetUnion(t *testing.T) {
 		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
 	}
 }
-
-//////////////////////////////////////////////////////////////////
-func TestNewFamily(t *testing.T) {
-	expect := Family{}
-
-	actual := NewFamily()
-
-	if !reflect.DeepEqual(expect, actual) {
-		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
-	}
-}
