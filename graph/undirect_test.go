@@ -171,40 +171,39 @@ func TestDisjointSetAlgorithm(t *testing.T) {
 	}
 }
 
-// func TestNewDisjointSet(t *testing.T) {
-// 	g := NewGraph()
-//
-// 	vertices := []Vertex{0, 1, 2, 3, 4, 5}
-// 	for _, v := range vertices {
-// 		g.AddVertex(v)
-// 	}
-//
-// 	g.AddEdge(0, 1, 0)
-// 	g.AddEdge(0, 3, 0)
-// 	g.AddEdge(1, 2, 0)
-// 	g.AddEdge(1, 4, 0)
-// 	g.AddEdge(2, 5, 0)
-// 	g.AddEdge(3, 4, 0)
-//
-// 	actual, err := g.NewDisjointSet()
-// 	if err != nil {
-// 		t.Error(err)
-// 	}
-//
-// 	expect := DisjointSet{
-// 		VerSet{0: struct{}{}},
-// 		VerSet{1: struct{}{}},
-// 		VerSet{2: struct{}{}},
-// 		VerSet{3: struct{}{}},
-// 		VerSet{4: struct{}{}},
-// 		VerSet{5: struct{}{}},
-// 	}
-//
-// 	if !reflect.DeepEqual(expect, actual) {
-// 		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
-// 	}
-//
-// }
+func TestNewDisjointSet(t *testing.T) {
+	g := NewGraph()
+
+	vertices := []Vertex{0, 1, 2, 3, 4, 5}
+	for _, v := range vertices {
+		g.AddVertex(v)
+	}
+
+	g.AddEdge(0, 1, 0)
+	g.AddEdge(0, 3, 0)
+	g.AddEdge(1, 2, 0)
+	g.AddEdge(1, 4, 0)
+	g.AddEdge(2, 5, 0)
+	g.AddEdge(3, 4, 0)
+
+	actual, err := g.NewDisjointSet()
+	if err != nil {
+		t.Error(err)
+	}
+
+	expect := DisjointSet{
+		VerSet{0: struct{}{}},
+		VerSet{1: struct{}{}},
+		VerSet{2: struct{}{}},
+		VerSet{3: struct{}{}},
+		VerSet{4: struct{}{}},
+		VerSet{5: struct{}{}},
+	}
+
+	if !actual.Equal(expect) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
+	}
+}
 
 func TestDisjointSetEqual(t *testing.T) {
 	expect := DisjointSet{
