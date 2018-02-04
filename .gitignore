@@ -3,3 +3,4 @@ tmp.go
 graph/gv.dot
 graph/gv.png
 tmp/
+debug
