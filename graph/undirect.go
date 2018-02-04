@@ -97,7 +97,17 @@ func (g *graph) ExistsCycle(method string) bool {
 	return false
 }
 
+// DisjointSetAlgorithm check whether a cycle exists or not.
 func DisjointSetAlgorithm(g *graph) bool {
+	d, err := g.NewDisjointSet()
+	if err != nil {
+		panic(err)
+	}
+
+	e := g.GetEdges()[0]
+	_ = e
+	// F, T := d.FindSet(e)
+	_ = d
 	return false
 }
 
@@ -154,4 +164,18 @@ func (d DisjointSet) Equal(other DisjointSet) bool {
 	})
 
 	return reflect.DeepEqual(d, other)
+}
+
+// FindSet returns VerSets.
+// Each VerSet contains the Vertex represented by `e.From` and `e.To`.
+func (d DisjointSet) FindSet(e Edge) (F, T VerSet) {
+	for _, set := range d {
+		if _, ok := set[e.From]; ok {
+			F = set
+		}
+		if _, ok := set[e.To]; ok {
+			T = set
+		}
+	}
+	return F, T
 }
