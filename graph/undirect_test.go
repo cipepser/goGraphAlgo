@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
@@ -254,5 +255,33 @@ func TestDisjointSetFindSet(t *testing.T) {
 	}
 	if !reflect.DeepEqual(expectT, actualT) {
 		t.Errorf("\nexpectT: %v\nactualT: %v\n", expectT, actualT)
+	}
+}
+
+func TestDisjointSetUnion(t *testing.T) {
+	expect := DisjointSet{
+		VerSet{
+			0: struct{}{},
+			1: struct{}{},
+			2: struct{}{},
+		},
+		VerSet{3: struct{}{}},
+	}
+	actual := DisjointSet{
+		VerSet{
+			2: struct{}{},
+			0: struct{}{},
+		},
+		VerSet{1: struct{}{}},
+		VerSet{3: struct{}{}},
+	}
+	actual = actual.Union(VerSet{1: struct{}{}}, VerSet{
+		2: struct{}{},
+		0: struct{}{},
+	})
+
+	fmt.Println(actual)
+	if !actual.Equal(expect) {
+		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
 	}
 }

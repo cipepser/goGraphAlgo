@@ -179,3 +179,47 @@ func (d DisjointSet) FindSet(e Edge) (F, T VerSet) {
 	}
 	return F, T
 }
+
+// Union unions 2 VerSets to one.
+func (d DisjointSet) Union(A, B VerSet) DisjointSet {
+	idxA, idxB := -1, -1
+	for i, set := range d {
+		if reflect.DeepEqual(set, A) {
+			idxA = i
+		}
+		if reflect.DeepEqual(set, B) {
+			idxB = i
+		}
+
+		if idxA >= 0 && idxB >= 0 {
+			break
+		}
+	}
+
+	if idxA > idxB {
+		idxA, idxB = idxB, idxA
+	}
+
+	AB := make(VerSet, len(d[idxA])+len(d[idxB]))
+	i := 0
+	for v := range d[idxA] {
+		AB[v] = struct{}{}
+		i++
+	}
+	for v := range d[idxB] {
+		AB[v] = struct{}{}
+		i++
+	}
+
+	copy(d[idxB:], d[idxB+1:])
+	d[len(d)-1] = nil
+	d = d[:len(d)-1]
+
+	copy(d[idxA:], d[idxA+1:])
+	d[len(d)-1] = nil
+	d = d[:len(d)-1]
+
+	d = append(d, AB)
+
+	return d
+}
