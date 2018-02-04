@@ -3,6 +3,7 @@ package graph
 import (
 	"errors"
 	"reflect"
+	"sort"
 	"strconv"
 )
 
@@ -84,4 +85,73 @@ func (s VerSet) Union(other VerSet) VerSet {
 	}
 
 	return u
+}
+
+// ExistsCycle check whether a cycle exists or not.
+// You can specify the algorithm by method:
+// "DisjointSet": Disjoint-Set Algorithm
+func (g *graph) ExistsCycle(method string) bool {
+	if method == "DisjointSet" {
+		return DisjointSetAlgorithm(g)
+	}
+	return false
+}
+
+func DisjointSetAlgorithm(g *graph) bool {
+	return false
+}
+
+// DisjointSet is a type consist of VerSets,
+// each of the VerSet is disjoint.
+type DisjointSet []VerSet
+
+func (g *graph) NewDisjointSet() (DisjointSet, error) {
+	set := make([]VerSet, g.verticesCount)
+
+	i := 0
+	for _, v := range g.GetVertices() {
+		s := NewVerSet()
+		if err := s.Add(v); err != nil {
+			return nil, err
+		}
+		set[i] = s
+		i++
+	}
+
+	return set, nil
+}
+
+// Equal checks whether d is same as other or not.
+func (d DisjointSet) Equal(other DisjointSet) bool {
+	sort.Slice(d, func(i, j int) bool {
+		var maxi, maxj Vertex
+		for k := range d[i] {
+			if k > maxi {
+				maxi = k
+			}
+		}
+		for k := range d[j] {
+			if k > maxj {
+				maxj = k
+			}
+		}
+		return maxi < maxj
+	})
+
+	sort.Slice(other, func(i, j int) bool {
+		var maxi, maxj Vertex
+		for k := range other[i] {
+			if k > maxi {
+				maxi = k
+			}
+		}
+		for k := range other[j] {
+			if k > maxj {
+				maxj = k
+			}
+		}
+		return maxi < maxj
+	})
+
+	return reflect.DeepEqual(d, other)
 }
