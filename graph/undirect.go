@@ -104,10 +104,13 @@ func DisjointSetAlgorithm(g *graph) bool {
 		panic(err)
 	}
 
-	e := g.GetEdges()[0]
-	_ = e
-	// F, T := d.FindSet(e)
-	_ = d
+	for _, e := range g.GetEdges() {
+		F, T := d.FindSet(e)
+		if F.Equal(T) {
+			return true
+		}
+		d = d.Union(F, T)
+	}
 	return false
 }
 

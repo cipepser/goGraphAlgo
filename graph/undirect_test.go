@@ -1,7 +1,6 @@
 package graph
 
 import (
-	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
@@ -165,11 +164,16 @@ func TestDisjointSetAlgorithm(t *testing.T) {
 	g.AddEdge(1, 2, 0)
 	g.AddEdge(1, 4, 0)
 	g.AddEdge(2, 5, 0)
+
+	if DisjointSetAlgorithm(g) {
+		t.Error("expect to get false, but get true")
+	}
+
 	g.AddEdge(3, 4, 0)
 
-	// if !DisjointSetAlgorithm(g) {
-	// 	t.Error("expect to get true, but get false")
-	// }
+	if !DisjointSetAlgorithm(g) {
+		t.Error("expect to get true, but get false")
+	}
 }
 
 func TestNewDisjointSet(t *testing.T) {
@@ -280,7 +284,6 @@ func TestDisjointSetUnion(t *testing.T) {
 		0: struct{}{},
 	})
 
-	fmt.Println(actual)
 	if !actual.Equal(expect) {
 		t.Errorf("\nexpect: %v\nactual: %v\n", expect, actual)
 	}
