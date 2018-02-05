@@ -199,6 +199,7 @@ func (d DisjointSet) Union(A, B VerSet) DisjointSet {
 		}
 	}
 
+	// In generally, idxB is lager than idxA
 	if idxA > idxB {
 		idxA, idxB = idxB, idxA
 	}
