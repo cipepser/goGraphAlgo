@@ -229,5 +229,8 @@ func TestSetWeight(t *testing.T) {
 	if actual != weight {
 		t.Errorf("The weight expects %v, but get %v\n", weight, actual)
 	}
+}
+
+func TestGetNeighbours(t *testing.T) {
 
 }

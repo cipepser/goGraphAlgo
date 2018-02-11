@@ -5,7 +5,7 @@ import "errors"
 // Vertex represents a vertex of the graph
 type Vertex uint
 
-// Edge represents a edge connects a vertex and another of the graph
+// Edge represents a edge connects a vertex with another of the graph
 type Edge struct {
 	From Vertex
 	To   Vertex
@@ -17,6 +17,7 @@ type graph struct {
 	edges         map[Edge]int
 	edgesCount    int
 	isDirected    bool
+	neighbours    map[Vertex][]Vertex
 }
 
 // NewGraph constructs a new graph
@@ -24,6 +25,7 @@ func NewGraph() *graph {
 	g := new(graph)
 	g.vertices = map[Vertex]int{}
 	g.edges = map[Edge]int{}
+	g.neighbours = map[Vertex][]Vertex{}
 	return g
 }
 
@@ -99,6 +101,17 @@ func (g *graph) ExistsEdge(from, to Vertex) bool {
 	if _, ok := g.edges[e]; ok {
 		return true
 	}
+
+	if !g.isDirected {
+		e := Edge{
+			From: to,
+			To:   from,
+		}
+		if _, ok := g.edges[e]; ok {
+			return true
+		}
+	}
+
 	return false
 }
 
@@ -124,7 +137,13 @@ func (g *graph) AddEdge(from, to Vertex, weight int) error {
 		To:   to,
 	}] = weight
 
+	g.neighbours[from] = append(g.neighbours[from], to)
+
 	g.edgesCount++
+
+	if !g.isDirected {
+		g.neighbours[to] = append(g.neighbours[to], from)
+	}
 
 	return nil
 }
@@ -188,4 +207,11 @@ func (g *graph) SetWeight(from, to Vertex, weight int) error {
 	}] = weight
 
 	return nil
+}
+
+// GetNeighbours returns the neighbours of the Vertex `v`.
+func (g *graph) GetNeighbours(v Vertex) []Vertex {
+	vertices := make([]Vertex, g.vertices[v])
+
+	return vertices
 }
