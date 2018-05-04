@@ -4,3 +4,5 @@ graph/gv.dot
 graph/gv.png
 tmp/
 debug
+*.dot
+*.png
